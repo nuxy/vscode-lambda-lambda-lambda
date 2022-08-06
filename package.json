@@ -1,6 +1,6 @@
 {
   "name": "vscode-lambda-lambda-lambda",
-  "description": "VS Code extension to create a new L3 application.",
+  "description": "VS Code extension to create a new L³ application.",
   "version": "0.0.1",
   "main": "./dist/extension.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "commands": [
       {
         "command": "lambda-lambda-lambda.createApp",
-        "title": "L3: Create a new application"
+        "title": "L³: Create a new application"
       }
     ]
   }
