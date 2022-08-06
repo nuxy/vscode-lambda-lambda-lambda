@@ -1,0 +1,12 @@
+{
+  "name": "{{appName}}",
+  "version": "0.0.1",
+  "description": "{{appDescription}}",
+  "main": "app.js",
+  "dependencies": {
+    "lambda-lambda-lambda": "^0.2.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

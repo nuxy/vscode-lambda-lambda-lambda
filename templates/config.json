@@ -1,0 +1,8 @@
+{
+  "origin": {
+    "siteUrl": "https://domain.com"
+  },
+  "router": {
+    "prefix": "/{{appUri}}"
+  }
+}
