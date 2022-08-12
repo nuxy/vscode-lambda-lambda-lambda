@@ -1,0 +1,8 @@
+{
+  "name": "{{appName}}",
+  "image": "node",
+  "forwardPorts": [3000],
+  "updateContentCommand": "npm install --prefix ${containerWorkspaceFolder}/{{appBaseDir}} >/dev/null",
+  "postCreateCommand": "npm install -g pm2",
+  "postStartCommand": "pm2 start ${containerWorkspaceFolder}/.devcontainer/ecosystem.config.js"
+}
