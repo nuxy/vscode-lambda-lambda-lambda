@@ -1,0 +1,12 @@
+.devcontainer/devcontainer.json
+.devcontainer/ecosystem.config.js
+.devcontainer/server.js
+{{appBaseDir}}/Makefile
+{{appBaseDir}}/package.json
+{{appBaseDir}}/src/routes/Example.js
+{{appBaseDir}}/src/middleware/Example.js
+{{appBaseDir}}/src/app.js
+{{appBaseDir}}/src/config.json
+deploy
+samconfig.toml
+template.yaml
