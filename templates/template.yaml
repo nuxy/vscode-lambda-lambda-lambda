@@ -7,7 +7,7 @@ Globals:
     Timeout: {{appTimeout}}
 
 Resources:
-  {{appName}}:
+  {{cfResourceName}}:
     Type: AWS::Serverless::Function
     Properties:
       Description: {{appDescription}}
@@ -77,6 +77,6 @@ Resources:
             LambdaFunctionAssociations:
               -
                 EventType: origin-request
-                LambdaFunctionARN: !Ref {{appName}}.Version
+                LambdaFunctionARN: !Ref {{cfResourceName}}.Version
                 IncludeBody: true
             ViewerProtocolPolicy: allow-all
