@@ -3,6 +3,6 @@
     "siteUrl": "https://domain.com"
   },
   "router": {
-    "prefix": "/{{appUri}}"
+    "prefix": "{{appUri}}"
   }
 }

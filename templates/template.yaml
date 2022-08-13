@@ -7,11 +7,11 @@ Globals:
     Timeout: {{appTimeout}}
 
 Resources:
-  RestfulAPI:
+  {{appName}}:
     Type: AWS::Serverless::Function
     Properties:
       Description: {{appDescription}}
-      CodeUri: ./{{appUri}}
+      CodeUri: ./{{appName}}
       Handler: app.handler
       Runtime: nodejs12.x
       AutoPublishAlias: Auto
@@ -58,7 +58,7 @@ Resources:
         CacheBehaviors:
           -
             TargetOriginId: {{appName}}
-            PathPattern: '/{{appUri}}/*'
+            PathPattern: '{{appUri}}*'
             AllowedMethods:
               - GET
               - HEAD
