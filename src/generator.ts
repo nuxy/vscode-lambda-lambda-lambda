@@ -5,29 +5,38 @@ import {renderFile} from 'template-file';
 import * as fs   from 'fs';
 import * as path from 'path';
 
+export interface AppConfig {
+  description: string,
+  name: string,
+  prefix: string,
+  timeout: number
+}
+
 interface TemplateVars {
   appBaseDir: string,
-  appDescription?: string,
-  appName: string,
-  appTimeout: number,
-  appPrefix: string,
-  cfResourceName?: string,
+  appDescription: AppConfig['description'],
+  appName: AppConfig['name'],
+  appPrefix: AppConfig['prefix'],
+  appTimeout: AppConfig['timeout'],
+  cfResourceName: string,
   routePath: string
 };
 
 /**
  * Generate app sources from templates.
  */
-export async function createFiles(appName: string, extPath: string) {
+export async function createFiles(appConfig: AppConfig, extPath: string) {
   const templates = `${extPath}/templates`;
   const manifest  = `${templates}/MANIFEST`;
 
+  const appName = camelCase(appConfig.name);
+
   const vars: TemplateVars = {
-    appBaseDir: camelCase(appName),
-    appDescription: 'Example description',
-    appName: camelCase(appName),
-    appTimeout: 3,
-    appPrefix: '/',
+    appBaseDir: appName,
+    appDescription: appConfig.description,
+    appName: appName,
+    appPrefix: appConfig.prefix,
+    appTimeout: appConfig.timeout,
     cfResourceName: pascalCase(appName),
     routePath: 'example'
   };
