@@ -39,6 +39,7 @@ export async function createFiles(appName: string, extPath: string) {
     const outFile: string | undefined = getFilePath(manFiles, tplFile);
 
     if (outFile) {
+      const outDir = path.dirname(outFile);
 
       // Select template based on type.
       if (isMiddleware(outFile)) {
@@ -49,7 +50,9 @@ export async function createFiles(appName: string, extPath: string) {
         tplFile = `${templates}/${tplFile}`;
       }
 
-      fs.mkdirSync(path.dirname(outFile), {recursive: true});
+      if (!fs.existsSync(outDir)) {
+        fs.mkdirSync(outDir, {recursive: true});
+      }
 
       const content: string = await renderFile(tplFile, {...vars});
       fs.writeFileSync(outFile, content, 'utf8');
@@ -65,7 +68,7 @@ export async function createFiles(appName: string, extPath: string) {
 }
 
 /**
- * Return file output path for a given file.
+ * Return output path for a given file.
  */
 function getFilePath(files: string[], cmpFile: string): string | undefined {
   const outPath: string | undefined = (workspace.workspaceFolders)
@@ -73,7 +76,7 @@ function getFilePath(files: string[], cmpFile: string): string | undefined {
 
   if (outPath) {
     for (const file of files) {
-      const regex = new RegExp(path.parse(cmpFile).name);
+      const regex = new RegExp(`\/${path.parse(cmpFile).name}`);
 
       if (path.basename(file) === cmpFile || regex.test(file)) {
         return `${outPath}/${file}`;
@@ -92,6 +95,6 @@ function isMiddleware(path: string): boolean {
 /**
  * Check for route output path.
  */
- function isRoute(path: string): boolean {
+function isRoute(path: string): boolean {
   return !!/\/src\/routes/.test(path);
 }
