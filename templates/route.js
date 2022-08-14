@@ -8,7 +8,7 @@ module.exports = {
   //resource: ['index'],
 
   /**
-   * GET {{appUri}}{{routePath}}
+   * GET {{appPrefix}}{{routePath}}
    */
   index (req, res) {
     res.status(200).send();

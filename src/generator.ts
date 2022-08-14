@@ -10,7 +10,7 @@ interface TemplateVars {
   appDescription?: string,
   appName: string,
   appTimeout: number,
-  appUri: string,
+  appPrefix: string,
   cfResourceName?: string,
   routePath: string
 };
@@ -27,7 +27,7 @@ export async function createFiles(appName: string, extPath: string) {
     appDescription: 'Example description',
     appName: camelCase(appName),
     appTimeout: 3,
-    appUri: '/',
+    appPrefix: '/',
     cfResourceName: pascalCase(appName),
     routePath: 'example'
   };

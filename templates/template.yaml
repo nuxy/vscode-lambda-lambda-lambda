@@ -58,7 +58,7 @@ Resources:
         CacheBehaviors:
           -
             TargetOriginId: {{appName}}
-            PathPattern: '{{appUri}}*'
+            PathPattern: '{{appPrefix}}*'
             AllowedMethods:
               - GET
               - HEAD
