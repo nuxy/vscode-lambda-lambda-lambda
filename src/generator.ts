@@ -9,7 +9,7 @@ export interface AppConfig {
   description: string,
   name: string,
   prefix: string,
-  timeout: number
+  timeout: string
 }
 
 interface TemplateVars {
@@ -35,8 +35,8 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
     appBaseDir: appName,
     appDescription: appConfig.description,
     appName: appName,
-    appPrefix: appConfig.prefix,
-    appTimeout: appConfig.timeout,
+    appPrefix: appConfig.prefix   || '/',
+    appTimeout: appConfig.timeout || '3',
     cfResourceName: pascalCase(appName),
     routePath: 'example'
   };
