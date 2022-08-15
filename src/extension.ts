@@ -30,7 +30,7 @@ export async function activate(context: ExtensionContext) {
       const prefix: string | undefined = await window.showInputBox({
         placeHolder: 'Prefix',
         validateInput: value => {
-          return (/^\/[\w-]{1,100}$/.test(value))
+          return (/^\/[\w-]{0,100}$/.test(value))
             ? null : 'Alphanumeric characters, must start with /';
         },
         value: '/'
