@@ -3,6 +3,8 @@
 const Router = require('lambda-lambda-lambda');
 const config = require('./config.json');
 
+const middlewareExample = require('./middleware/Example');
+
 /**
  * @see AWS::Serverless::Function
  */
@@ -11,6 +13,9 @@ exports.handler = (event, context, callback) => {
 
   const router = new Router(request, response);
   router.setPrefix(config.router.prefix);
+
+  // Middleware (order is important).
+  router.use(middlewareExample);
 
   // Send root response.
   router.get('/', function(req, res) {
