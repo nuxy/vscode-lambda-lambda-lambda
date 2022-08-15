@@ -52,6 +52,13 @@
         "command": "lambda-lambda-lambda.createApp",
         "title": "L³: Create new application"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+      {
+          "command": "lambda-lambda-lambda.createApp",
+          "when": "workbenchState == folder"
+      }]
+  }
   }
 }
