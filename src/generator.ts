@@ -45,7 +45,7 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
   const tplFiles: string[] = fs.readdirSync(templates);
 
   for (let tplFile of tplFiles) {
-    const outFile: string | undefined = getFilePath(manFiles, tplFile);
+    const outFile: string | undefined = getFsPath(manFiles, tplFile);
 
     if (outFile) {
       const outDir = path.dirname(outFile);
@@ -79,19 +79,26 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
 /**
  * Return output path for a given file.
  */
-function getFilePath(files: string[], cmpFile: string): string | undefined {
-  const outPath: string | undefined = (workspace.workspaceFolders)
-    ? workspace.workspaceFolders[0].uri.fsPath: undefined;
+function getFsPath(files: string[], cmpFile: string): string | undefined {
+  const outPath = getWorkspace();
 
   if (outPath) {
     for (const file of files) {
       const regex = new RegExp(`\/${path.parse(cmpFile).name}`);
 
-      if (path.basename(file) === cmpFile || regex.test(file)) {
+      if (regex.test(file) || path.basename(file) === cmpFile) {
         return `${outPath}/${file}`;
       }
     }
   }
+}
+
+/**
+ * Return the Workspace root path.
+ */
+function getWorkspace(): string | undefined {
+  return (workspace.workspaceFolders)
+    ? workspace.workspaceFolders[0].uri.fsPath: undefined;
 }
 
 /**
