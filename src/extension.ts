@@ -23,7 +23,7 @@ export async function activate(context: ExtensionContext) {
 
       // Prompt application values.
       const name: string | undefined = await promptInputBox({
-        placeHolder: 'Application name',
+        placeHolder: 'Application name (Example: restfulApiHandler)',
         title: inputBoxTitle(1),
         validateInput: value => {
           return (value && /^[a-zA-Z0-9]{1,40}$/.test(value))
@@ -43,25 +43,23 @@ export async function activate(context: ExtensionContext) {
       });
 
       const prefix: string | undefined = await promptInputBox({
-        placeHolder: 'Prefix',
+        placeHolder: 'Request prefix (Example: /api)',
         title: inputBoxTitle(3),
         validateInput: value => {
           return (value && /^\/[\w-]{0,100}$/.test(value))
             ? undefined : 'Alphanumeric characters, must start with /';
         },
-        step: 3,
-        value: '/',
+        step: 3
       });
 
       const timeout: string | undefined = await promptInputBox({
-        placeHolder: 'Timeout',
+        placeHolder: 'Function timeout (in seconds)',
         title: inputBoxTitle(4),
         validateInput: value => {
           return (value && /^[\d]{1,2}$/.test(value))
             ? undefined : 'Numbers only';
         },
-        step: 4,
-        value: '3'
+        step: 4
       });
 
       // Generate sources from templates.
