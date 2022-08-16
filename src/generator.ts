@@ -1,3 +1,12 @@
+/**
+ *  vscode-lambda-lambda-lambda
+ *  VS Code extension to create a new L³ application.
+ *
+ *  Copyright 2022, Marc S. Brooks (https://mbrooks.info)
+ *  Licensed under the MIT license:
+ *  http://www.opensource.org/licenses/mit-license.php
+ */
+
 import {window, workspace, Uri, WorkspaceEdit} from 'vscode';
 import {camelCase, pascalCase} from 'change-case';
 import {renderFile} from 'template-file';
