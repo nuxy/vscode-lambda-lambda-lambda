@@ -50,7 +50,7 @@
     "commands": [
       {
         "command": "lambda-lambda-lambda.createApp",
-        "title": "L³: Create new application"
+        "title": "Create new L³ application"
       }
     ],
     "menus": {
