@@ -11,6 +11,7 @@ module.exports = {
    * GET {{appPrefix}}{{routePath}}
    */
   index (req, res) {
-    res.status(200).send();
+    res.setHeader('Content-Type', 'text/html');
+    res.status(200).send('Lambda, Lambda, Lambda');
   }
 };
