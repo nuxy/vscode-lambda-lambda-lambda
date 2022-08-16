@@ -2,6 +2,8 @@
 
 VS Code [extension](https://marketplace.visualstudio.com/VSCode) to create a new [L³](https://github.com/nuxy/lambda-lambda-lambda) application.
 
+![Command Palette](https://raw.githubusercontent.com/nuxy/vscode-lambda-lambda-lambda/master/package.gif)
+
 ## Dependencies
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
