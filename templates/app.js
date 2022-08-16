@@ -17,11 +17,6 @@ exports.handler = (event, context, callback) => {
   // Middleware (order is important).
   router.use(middlewareExample);
 
-  // Send root response.
-  router.get('/', function(req, res) {
-    res.status(501).send();
-  });
-
   // .. everything else.
   router.default(function(req, res) {
     res.status(404).send();
