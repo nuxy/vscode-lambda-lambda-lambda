@@ -9,5 +9,6 @@
 {{appBaseDir}}/src/app.js
 {{appBaseDir}}/src/config.json
 deploy
+README.md
 samconfig.toml
 template.yaml
