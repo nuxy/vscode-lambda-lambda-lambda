@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "icon": "icon.png",
   "main": "./dist/extension.js",
+  "publisher": "Nuxy",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
