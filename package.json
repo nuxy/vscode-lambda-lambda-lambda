@@ -30,15 +30,15 @@
     "template-file": "^6.0.1"
   },
   "devDependencies": {
-    "@types/node": "^16.11.47",
-    "@types/vscode": "^1.69.1",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
-    "eslint": "^8.21.0",
+    "@types/node": "^16.11.49",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "eslint": "^8.22.0",
     "typescript": "^4.7.4"
   },
   "engines": {
-    "vscode": "^1.32.0"
+    "vscode": "^1.70.0"
   },
   "categories": [
     "Other"
@@ -55,10 +55,11 @@
     ],
     "menus": {
       "commandPalette": [
-      {
+        {
           "command": "lambda-lambda-lambda.createApp",
           "when": "workbenchState == folder"
-      }]
-  }
+        }
+      ]
+    }
   }
 }
