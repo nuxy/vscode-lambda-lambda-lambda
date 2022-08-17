@@ -1,0 +1,7 @@
+.eslintrc
+.gitignore
+.vscode
+dist/*.map
+package.gif
+src
+tsconfig.json
