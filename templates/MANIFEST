@@ -1,6 +1,7 @@
 .devcontainer/devcontainer.json
 .devcontainer/ecosystem.config.js
 .devcontainer/server.js
+.eslintrc
 {{appBaseDir}}/.gitignore
 {{appBaseDir}}/Makefile
 {{appBaseDir}}/package.json

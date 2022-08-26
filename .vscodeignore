@@ -1,4 +1,4 @@
-.eslintrc
+/.eslintrc
 .gitignore
 .vscode
 dist/*.map
