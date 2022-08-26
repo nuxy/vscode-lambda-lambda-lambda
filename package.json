@@ -2,7 +2,7 @@
   "name": "vscode-lambda-lambda-lambda",
   "displayName": "Lambda Lambda Lambda",
   "description": "VS Code extension to create a new L³ application.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "icon": "icon.png",
   "main": "./dist/extension.js",
   "publisher": "Nuxy",
