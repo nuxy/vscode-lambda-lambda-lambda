@@ -31,6 +31,16 @@ In order to successfully deploy your application you must have [set-up your AWS 
 
 WARNING: The policies above are provided to ensure a successful application deployment.  It is recommended that you adjust these policies to meet the security requirements of your Lambda application.  They should NOT be used in a Production environment.
 
+### Mounting the AWS configuration
+
+In order to deploy from within the container using [VS Code terminal](https://code.visualstudio.com/docs/terminal/basics) you will need to enable* the following line in: `.devcontainer/devcontainer.json`
+
+```
+"mounts": ["source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached"],
+```
+
+(*) Requires container rebuild.
+
 ## References
 
 - [Setting IAM Permissions and Roles](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html)
