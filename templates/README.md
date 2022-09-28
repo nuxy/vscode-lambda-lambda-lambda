@@ -35,7 +35,7 @@ WARNING: The policies above are provided to ensure a successful application depl
 
 In order to deploy from within the container using [VS Code terminal](https://code.visualstudio.com/docs/terminal/basics) you will need to enable* the following line in: `.devcontainer/devcontainer.json`
 
-```
+```json
 "mounts": ["source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached"],
 ```
 
