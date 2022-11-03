@@ -35,7 +35,7 @@ export async function activate(context: ExtensionContext) {
 function createApp(context: ExtensionContext) {
   return commands.registerCommand('lambda-lambda-lambda.createApp', async () => {
     const inputBoxTitle = (step: number = 1): string => {
-      return `Create new L³ application`;
+      return `L³: Create new application`;
     };
 
     // Prompt application values.
