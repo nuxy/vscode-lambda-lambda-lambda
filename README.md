@@ -17,6 +17,10 @@ Run [ESLint](https://eslint.org/) on project sources:
 
     $ npm run lint
 
+## References
+
+- [VS Code API](https://code.visualstudio.com/api/references/vscode-api)
+
 ## Contributions
 
 If you fix a bug, or have a code you want to contribute, please send a pull-request with your changes. (Note: Before committing your code please ensure that you are following the [TypeScript style guide](https://github.com/basarat/typescript-book/blob/master/docs/styleguide/styleguide.md))
