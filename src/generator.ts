@@ -22,13 +22,13 @@ export interface AppConfig {
 }
 
 interface TemplateVars {
-  appDescription: AppConfig['description'],
-  appName: AppConfig['name'],
-  appPrefix: AppConfig['prefix'],
-  appTimeout: AppConfig['timeout'],
-  cfResourceName: string,
-  routePath: string
-};
+  appDescription?: AppConfig['description'],
+  appName?: AppConfig['name'],
+  appPrefix?: AppConfig['prefix'],
+  appTimeout?: AppConfig['timeout'],
+  cfResourceName?: string,
+  routePath?: string
+}
 
 /**
  * Generate app sources from templates.
@@ -43,14 +43,14 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
     appPrefix: appConfig.prefix   || '/',
     appTimeout: appConfig.timeout || '3',
     cfResourceName: pascalCase(appConfig.name),
-    routePath: 'example'
+    routePath: `${appConfig.prefix}/example`
   };
 
   const manFiles: string[] = (await renderFile(manifest, {...vars})).split(/\r?\n/);
   const tplFiles: string[] = fs.readdirSync(templates);
 
   for (let tplFile of tplFiles) {
-    const outFile: string | undefined = getFsPath(manFiles, tplFile);
+    const outFile: string | void = getFsPath(manFiles, tplFile);
 
     if (outFile) {
       const outDir = path.dirname(outFile);
@@ -82,9 +82,49 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
 }
 
 /**
+ * Generate file sources from a template.
+ */
+export async function createFile(name: string, extPath: string, outPath: string, tplType: string) {
+  const templates = `${extPath}/templates`;
+
+  let resPath: string = getResourcePath(outPath);
+  resPath = (resPath) ? `${resPath}/` : '';
+
+  const vars: TemplateVars = {
+    routePath: `${getAppPrefix()}/${resPath}${name.toLowerCase()}`
+  };
+
+  const outFile = `${outPath}/${pascalCase(name)}.js`;
+
+  // Select template based on type.
+  const tplFile = (tplType === 'Middleware')
+    ? `${templates}/middleware.js`
+    : `${templates}/route.js`;
+
+  const content: string = await renderFile(tplFile, {...vars});
+  fs.writeFileSync(outFile, content, 'utf8');
+
+  const wsedit = new WorkspaceEdit();
+  wsedit.createFile(Uri.parse(outFile), {ignoreIfExists: true});
+}
+
+/**
+ * Return configured application prefix.
+ */
+function getAppPrefix(): string | void {
+  const files = require('find').fileSync('config.json', getWorkspace());
+
+  if (files) {
+    return JSON.parse(fs.readFileSync(files[0], 'utf8')).router.prefix;
+  }
+
+  window.showErrorMessage('Failed to load application config.');
+}
+
+/**
  * Return output path for a given file.
  */
-function getFsPath(files: string[], cmpFile: string): string | undefined {
+function getFsPath(files: string[], cmpFile: string): string | void {
   const outPath = getWorkspace();
 
   if (outPath) {
@@ -99,11 +139,18 @@ function getFsPath(files: string[], cmpFile: string): string | undefined {
 }
 
 /**
+ * Return path relative to resource directory.
+ */
+function getResourcePath(value: string): string {
+  return value.replace(/^.*\/src\/(?:middleware|routes)\/?(.*)?$/, '$1');
+}
+
+/**
  * Return the Workspace root path.
  */
 function getWorkspace(): string | undefined {
   return (workspace.workspaceFolders)
-    ? workspace.workspaceFolders[0].uri.fsPath: undefined;
+    ? workspace.workspaceFolders[0].uri.fsPath : undefined;
 }
 
 /**

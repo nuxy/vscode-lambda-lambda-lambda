@@ -8,7 +8,7 @@ module.exports = {
   //resource: ['index'],
 
   /**
-   * GET {{appPrefix}}{{routePath}}
+   * GET {{routePath}}
    */
   index (req, res) {
     res.setHeader('Content-Type', 'text/html');

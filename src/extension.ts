@@ -7,30 +7,32 @@
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-import {commands, window, ExtensionContext} from 'vscode';
+import {commands, window, ExtensionContext, Uri} from 'vscode';
 
 // Local modules
-import {createFiles, AppConfig} from './generator';
+import {createFile, createFiles, AppConfig} from './generator';
 
 interface InputBoxOpts {
   placeHolder: string,
   title: string,
   validateInput: {(value: string): string | undefined},
   value?: string,
-  step: number
+  step?: number
 }
 
 /**
  * Activate the VS Code extension.
  */
-export async function activate(context: ExtensionContext) {
+export function activate(context: ExtensionContext) {
   context.subscriptions.push(
-    createApp(context)
+    createApp(context),
+    createResource(context, 'Middleware'),
+    createResource(context, 'Route')
   );
 }
 
 /**
- * Create new L³ application files.
+ * Create new L³ application options.
  */
 function createApp(context: ExtensionContext) {
   return commands.registerCommand('lambda-lambda-lambda.createApp', async () => {
@@ -87,7 +89,32 @@ function createApp(context: ExtensionContext) {
     } else {
       window.showErrorMessage('Failed to create application sources.');
     }
-  })
+  });
+}
+
+/**
+ * Create new L³ application resource.
+ */
+function createResource(context: ExtensionContext, type: string) {
+  return commands.registerCommand(`lambda-lambda-lambda.create${type}`, async (uri: Uri) => {
+
+    // Prompt application values.
+    const name: string | undefined = await promptInputBox({
+      placeHolder: `${type} name (Example: ${type === 'Route' ? 'Login' : 'BasicAuthHandler'})`,
+      title: `L³: Create new application resource`,
+      validateInput: value => {
+        return (value && /^[a-zA-Z0-9]{1,40}$/.test(value))
+          ? undefined : 'Alphanumeric characters, no spaces';
+      }
+    });
+
+    // Generate file from template.
+    if (name) {
+      createFile(name, context.extensionPath, uri.path, type);
+    } else {
+      window.showErrorMessage(`Failed to create ${type} resource`);
+    }
+  });
 }
 
 /**
