@@ -11,7 +11,7 @@ const http = require('http');
 const url  = require('url');
 
 // Local modules.
-const {handler} = require('../{{appBaseDir}}/src/app');
+const {handler} = require('../{{appName}}/src/app');
 
 /**
  * Init Lambda@Edge script environment.

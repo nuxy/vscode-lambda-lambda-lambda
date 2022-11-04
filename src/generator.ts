@@ -22,7 +22,6 @@ export interface AppConfig {
 }
 
 interface TemplateVars {
-  appBaseDir: string,
   appDescription: AppConfig['description'],
   appName: AppConfig['name'],
   appPrefix: AppConfig['prefix'],
@@ -38,15 +37,12 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
   const templates = `${extPath}/templates`;
   const manifest  = `${templates}/MANIFEST`;
 
-  const appName = camelCase(appConfig.name);
-
   const vars: TemplateVars = {
-    appBaseDir: appName,
     appDescription: appConfig.description,
-    appName: appName,
+    appName: camelCase(appConfig.name),
     appPrefix: appConfig.prefix   || '/',
     appTimeout: appConfig.timeout || '3',
-    cfResourceName: pascalCase(appName),
+    cfResourceName: pascalCase(appConfig.name),
     routePath: 'example'
   };
 
