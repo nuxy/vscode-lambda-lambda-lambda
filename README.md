@@ -9,6 +9,14 @@ VS Code [extension](https://marketplace.visualstudio.com/VSCode) to create a new
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Node.js](https://nodejs.org)
 
+## Supported commands
+
+| L³ Command             | UI Location    |
+|------------------------|----------------|
+| Create new application | Command Pallet |
+| Create new middleware  | Context Menu   |
+| Create new route       | Context Menu   |
+
 ## Developers
 
 ### CLI options
