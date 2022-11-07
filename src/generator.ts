@@ -7,9 +7,9 @@
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-import {window, workspace, Uri, WorkspaceEdit} from 'vscode';
+import {window, workspace}     from 'vscode';
 import {camelCase, pascalCase} from 'change-case';
-import {renderFile} from 'template-file';
+import {renderFile}            from 'template-file';
 
 import * as fs   from 'fs';
 import * as path from 'path';
@@ -70,11 +70,6 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
 
       const content: string = await renderFile(tplFile, {...vars});
       fs.writeFileSync(outFile, content, 'utf8');
-
-      const wsedit = new WorkspaceEdit();
-      wsedit.createFile(Uri.parse(outFile), {ignoreIfExists: true});
-
-      workspace.applyEdit(wsedit);
     }
   }
 
@@ -103,9 +98,6 @@ export async function createFile(name: string, extPath: string, outPath: string,
 
   const content: string = await renderFile(tplFile, {...vars});
   fs.writeFileSync(outFile, content, 'utf8');
-
-  const wsedit = new WorkspaceEdit();
-  wsedit.createFile(Uri.parse(outFile), {ignoreIfExists: true});
 }
 
 /**
