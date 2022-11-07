@@ -37,7 +37,7 @@ export function activate(context: ExtensionContext) {
 function createApp(context: ExtensionContext) {
   return commands.registerCommand('lambda-lambda-lambda.createApp', async () => {
     const inputBoxTitle = (step: number = 1): string => {
-      return `L³: Create new application`;
+      return 'L³: Create new application';
     };
 
     // Prompt application values.
@@ -101,7 +101,7 @@ function createResource(context: ExtensionContext, type: string) {
     // Prompt application values.
     const name: string | undefined = await promptInputBox({
       placeHolder: `${type} name (Example: ${type === 'Route' ? 'Login' : 'BasicAuthHandler'})`,
-      title: `L³: Create new application resource`,
+      title: 'L³: Create new application resource',
       validateInput: value => {
         return (value && /^[a-zA-Z0-9]{1,40}$/.test(value))
           ? undefined : 'Alphanumeric characters, no spaces';
