@@ -36,14 +36,12 @@ export function activate(context: ExtensionContext) {
  */
 function createApp(context: ExtensionContext) {
   return commands.registerCommand('lambda-lambda-lambda.createApp', async () => {
-    const inputBoxTitle = (step: number = 1): string => {
-      return 'L³: Create new application';
-    };
+    const inputBoxTitle = 'L³: Create new application';
 
     // Prompt application values.
     const name: string | undefined = await promptInputBox({
       placeHolder: 'Application name (Example: restfulApiHandler)',
-      title: inputBoxTitle(1),
+      title: inputBoxTitle,
       validateInput: value => {
         return (value && /^[a-zA-Z0-9]{1,40}$/.test(value))
           ? undefined : 'Alphanumeric characters, no spaces';
@@ -53,7 +51,7 @@ function createApp(context: ExtensionContext) {
 
     const description: string | undefined = await promptInputBox({
       placeHolder: 'Description',
-      title: inputBoxTitle(2),
+      title: inputBoxTitle,
       validateInput: value => {
         return (value && /^[\w-.,!? ]{1,100}$/.test(value))
           ? undefined : 'Alphanumeric characters, .,!? punctuation';
@@ -63,7 +61,7 @@ function createApp(context: ExtensionContext) {
 
     const prefix: string | undefined = await promptInputBox({
       placeHolder: 'Request prefix (Example: /api)',
-      title: inputBoxTitle(3),
+      title: inputBoxTitle,
       validateInput: value => {
         return (value && /^\/[\w-]{0,100}$/.test(value))
           ? undefined : 'Alphanumeric characters, must start with /';
@@ -73,7 +71,7 @@ function createApp(context: ExtensionContext) {
 
     const timeout: string | undefined = await promptInputBox({
       placeHolder: 'Function timeout (in seconds)',
-      title: inputBoxTitle(4),
+      title: inputBoxTitle,
       validateInput: value => {
         return (value && /^[\d]{1,2}$/.test(value))
           ? undefined : 'Numbers only';
@@ -97,11 +95,12 @@ function createApp(context: ExtensionContext) {
  */
 function createResource(context: ExtensionContext, type: string) {
   return commands.registerCommand(`lambda-lambda-lambda.create${type}`, async (uri: Uri) => {
+    const inputBoxTitle = 'L³: Create new application resource';
 
     // Prompt application values.
     const name: string | undefined = await promptInputBox({
       placeHolder: `${type} name (Example: ${type === 'Route' ? 'Login' : 'BasicAuthHandler'})`,
-      title: 'L³: Create new application resource',
+      title: inputBoxTitle,
       validateInput: value => {
         return (value && /^[a-zA-Z0-9]{1,40}$/.test(value))
           ? undefined : 'Alphanumeric characters, no spaces';
