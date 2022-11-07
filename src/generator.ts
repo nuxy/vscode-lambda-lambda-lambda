@@ -79,7 +79,7 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
 /**
  * Generate file sources from a template.
  */
-export async function createFile(name: string, extPath: string, outPath: string, tplType: string) {
+export async function createFile(name: string, extPath: string, outPath: string) {
   const templates = `${extPath}/templates`;
 
   let resPath: string = getResourcePath(outPath);
@@ -92,7 +92,7 @@ export async function createFile(name: string, extPath: string, outPath: string,
   const outFile = `${outPath}/${pascalCase(name)}.js`;
 
   // Select template based on type.
-  const tplFile = (tplType === 'Middleware')
+  const tplFile = (isMiddleware(outPath))
     ? `${templates}/middleware.js`
     : `${templates}/route.js`;
 

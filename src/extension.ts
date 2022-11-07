@@ -110,7 +110,7 @@ function createResource(context: ExtensionContext, type: string) {
 
     // Generate file from template.
     if (name) {
-      createFile(name, context.extensionPath, uri.path, type);
+      createFile(name, context.extensionPath, uri.path);
     } else {
       window.showErrorMessage(`Failed to create ${type} resource`);
     }
