@@ -8,9 +8,11 @@
   },
   "devDependencies": {
     "eslint": "latest",
-    "jsdoc": "latest"
+    "jsdoc": "latest",
+    "swagger-jsdoc": "latest"
   },
   "scripts": {
+    "genapi": "swagger-jsdoc -d src/openapi.js -o swagger.json src/routes/**.js",
     "gendoc": "jsdoc -d doc -r src",
     "lint": "eslint src/*.js"
   },

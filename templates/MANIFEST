@@ -9,6 +9,7 @@
 {{appName}}/src/middleware/Example.js
 {{appName}}/src/app.js
 {{appName}}/src/config.json
+{{appName}}/src/openapi.js
 .vscode/extensions.json
 .vscode/settings.json
 deploy

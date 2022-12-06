@@ -14,7 +14,7 @@
 
 ## Running your app
 
-In the VS Code _Command Palette_ choose "Open Folder in Container" which will launch your application in a Docker container allowing for realtime development and testing.  Once launched, the application can be accessed at - [http://localhost:3000{{appPrefix}}](http://localhost:3000{{appPrefix}})
+In the VS Code _Command Palette_ choose "Open Folder in Container" which will launch your application in a Docker container allowing for realtime development and testing.  Once launched, the application can be accessed at [http://localhost:3000{{appPrefix}}](http://localhost:3000{{appPrefix}}) and tested using the [VS Code Swagger Viewer](https://marketplace.visualstudio.com/items?itemName=Arjun.swagger-viewer) (`swagger.json`)
 
 ## Deploying to AWS
 
@@ -48,6 +48,10 @@ In order to deploy from within the container using [VS Code terminal](https://co
 Run [ESLint](https://eslint.org/) on project sources:
 
     $ npm run lint
+
+Generate [Swagger](https://swagger.io) Open API definitions:
+
+    $ npm run genapi
 
 Generate documentation using [JSDoc](https://jsdoc.app):
 
