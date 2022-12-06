@@ -41,6 +41,18 @@ In order to deploy from within the container using [VS Code terminal](https://co
 
 (*) Requires container rebuild.
 
+## Developers
+
+### CLI options
+
+Run [ESLint](https://eslint.org/) on project sources:
+
+    $ npm run lint
+
+Generate documentation using [JSDoc](https://jsdoc.app):
+
+    $ npm run gendoc
+
 ## References
 
 - [Setting IAM Permissions and Roles](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html)

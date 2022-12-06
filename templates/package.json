@@ -6,6 +6,14 @@
   "dependencies": {
     "lambda-lambda-lambda": "latest"
   },
+  "devDependencies": {
+    "eslint": "latest",
+    "jsdoc": "latest"
+  },
+  "scripts": {
+    "gendoc": "jsdoc -d doc -r src",
+    "lint": "eslint src/*.js"
+  },
   "engines": {
     "node": ">=14.0.0"
   }
