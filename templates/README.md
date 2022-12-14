@@ -49,7 +49,7 @@ Run [ESLint](https://eslint.org/) on project sources:
 
     $ npm run lint
 
-Generate [Swagger](https://swagger.io) Open API definitions:
+Generate [Swagger](https://swagger.io) OpenAPI definitions:
 
     $ npm run genapi
 
