@@ -66,4 +66,5 @@ This is due to a [bug](https://github.com/microsoft/vscode-remote-release/issues
 ## References
 
 - [Setting IAM Permissions and Roles](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html)
+- [Cache behavior settings](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesObjectCaching)
 - [lambda-lambda-lambda](https://github.com/nuxy/lambda-lambda-lambda)
