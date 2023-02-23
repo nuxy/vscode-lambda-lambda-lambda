@@ -14,7 +14,7 @@
   "scripts": {
     "genapi": "swagger-jsdoc -d src/openapi.js -o swagger.json src/app.js 'src/routes/**/*.js'",
     "gendoc": "jsdoc -d doc -r src",
-    "lint": "eslint src/*.js"
+    "lint": "eslint src tests"
   },
   "engines": {
     "node": ">=14.0.0"
