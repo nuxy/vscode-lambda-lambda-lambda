@@ -7,6 +7,7 @@
     "lambda-lambda-lambda": "latest"
   },
   "devDependencies": {
+    "aws-sdk": "^{{sdkVersion}}",
     "eslint": "latest",
     "jsdoc": "latest",
     "swagger-jsdoc": "latest"

@@ -18,7 +18,8 @@ export interface AppConfig {
   description: string,
   name: string,
   prefix: string,
-  timeout: string
+  timeout: string,
+  sdkVersion: string
 }
 
 interface TemplateVars {
@@ -26,6 +27,7 @@ interface TemplateVars {
   appName?: AppConfig['name'],
   appPrefix?: AppConfig['prefix'],
   appTimeout?: AppConfig['timeout'],
+  sdkVersion?: AppConfig['sdkVersion'],
   cfResourceName?: string,
   routePath?: string
 }
@@ -42,6 +44,7 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
     appName: camelCase(appConfig.name),
     appPrefix: appConfig.prefix   || '/',
     appTimeout: appConfig.timeout || '3',
+    sdkVersion: appConfig.sdkVersion,
     cfResourceName: pascalCase(appConfig.name),
     routePath: `${appConfig.prefix}/example`
   };

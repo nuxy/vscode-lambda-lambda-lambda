@@ -20,6 +20,17 @@ interface InputBoxOpts {
   step?: number
 }
 
+interface QuickPickItem {
+  label: string
+}
+
+interface QuickPickOpts {
+  placeHolder: string,
+  title: string,
+  items: QuickPickItem[],
+  step?: number
+}
+
 /**
  * Activate the VS Code extension.
  */
@@ -79,9 +90,16 @@ function createApp(context: ExtensionContext) {
       step: 4
     });
 
+    const sdkVersion: string | undefined = await promptQuickPick({
+      placeHolder: 'AWS SDK for JavaScript version',
+      title: inputBoxTitle,
+      items: [{label: '2'}, {label: '3'}],
+      step: 5
+    });
+
     // Generate sources from templates.
-    if (description && name && prefix && timeout) {
-      const appConfig: AppConfig = {description, name, prefix, timeout};
+    if (description && name && prefix && timeout && sdkVersion) {
+      const appConfig: AppConfig = {description, name, prefix, timeout, sdkVersion};
 
       createFiles(appConfig, context.extensionPath);
     } else {
@@ -126,7 +144,7 @@ function promptInputBox(opts: InputBoxOpts): Promise<any> {
     inputBox.title       = opts.title;
     inputBox.value       = opts.value || '';
     inputBox.step        = opts.step;
-    inputBox.totalSteps  = 4;
+    inputBox.totalSteps  = 5;
 
     // Handle events.
     inputBox.onDidAccept(() => {
@@ -142,5 +160,26 @@ function promptInputBox(opts: InputBoxOpts): Promise<any> {
     });
 
     inputBox.show();
+  });
+}
+
+/**
+ * Create a new QuickPick instance.
+ */
+function promptQuickPick(opts: QuickPickOpts): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const quickPick = window.createQuickPick();
+    quickPick.placeholder = opts.placeHolder;
+    quickPick.title       = opts.title;
+    quickPick.items       = opts.items;
+    quickPick.step        = opts.step;
+    quickPick.totalSteps  = 5;
+
+    // Handle events.
+    quickPick.onDidChangeSelection(items => resolve(items[0].label));
+    quickPick.onDidAccept(() => quickPick.dispose());
+    quickPick.onDidHide(() => quickPick.dispose());
+
+    quickPick.show();
   });
 }
