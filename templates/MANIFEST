@@ -10,6 +10,7 @@
 {{appName}}/src/app.js
 {{appName}}/src/config.json
 {{appName}}/src/openapi.js
+{{appName}}/test/.gitkeep
 .vscode/extensions.json
 .vscode/settings.json
 deploy
