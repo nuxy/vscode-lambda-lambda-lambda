@@ -27,7 +27,7 @@ interface TemplateVars {
   appName?: AppConfig['name'],
   appPrefix?: AppConfig['prefix'],
   appTimeout?: AppConfig['timeout'],
-  sdkVersion?: AppConfig['sdkVersion'],
+  sdkPackage?: string,
   cfResourceName?: string,
   routePath?: string
 }
@@ -44,7 +44,7 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
     appName: camelCase(appConfig.name),
     appPrefix: appConfig.prefix   || '/',
     appTimeout: appConfig.timeout || '3',
-    sdkVersion: appConfig.sdkVersion,
+    sdkPackage: (appConfig.sdkVersion === '2') ? 'aws-sdk-mock' : 'aws-sdk-client-mock',
     cfResourceName: pascalCase(appConfig.name),
     routePath: `${appConfig.prefix}/example`
   };
