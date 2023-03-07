@@ -2,7 +2,7 @@
   "name": "{{appName}}",
   "version": "0.0.1",
   "description": "{{appDescription}}",
-  "main": "app.js",
+  "main": "src/app.js",
   "dependencies": {
     "lambda-lambda-lambda": "latest"
   },
