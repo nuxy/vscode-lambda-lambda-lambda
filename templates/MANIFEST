@@ -3,6 +3,7 @@
 .devcontainer/server.js
 .eslintrc
 {{appName}}/.gitignore
+{{appName}}/.npmignore
 {{appName}}/Makefile
 {{appName}}/package.json
 {{appName}}/src/routes/Example.js
