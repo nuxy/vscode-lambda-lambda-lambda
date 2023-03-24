@@ -1,2 +1,4 @@
 .aws-sam
 .devcontainer/*.log
+node_modules
+package.lock
