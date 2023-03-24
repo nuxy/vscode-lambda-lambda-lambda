@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "Arjun.swagger-viewer",
+    "berublan.vscode-log-viewer",
     "christian-kohler.path-intellisense",
     "DavidAnson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",

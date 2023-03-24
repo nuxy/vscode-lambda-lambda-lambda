@@ -2,7 +2,7 @@
 .devcontainer/ecosystem.config.js
 .devcontainer/server.js
 .eslintrc
-{{appName}}/.gitignore
+.gitignore
 {{appName}}/.npmignore
 {{appName}}/Makefile
 {{appName}}/package.json
