@@ -7,9 +7,9 @@
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-import {window, workspace}     from 'vscode';
-import {camelCase, pascalCase} from 'change-case';
-import {renderFile}            from 'template-file';
+import {window, workspace}                from 'vscode';
+import {camelCase, paramCase, pascalCase} from 'change-case';
+import {renderFile}                       from 'template-file';
 
 import * as fs   from 'fs';
 import * as path from 'path';
@@ -27,6 +27,7 @@ interface TemplateVars {
   appName?: AppConfig['name'],
   appPrefix?: AppConfig['prefix'],
   appTimeout?: AppConfig['timeout'],
+  pkgName?: string,
   sdkPackage?: string,
   cfResourceName?: string,
   routePath?: string
@@ -44,6 +45,7 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
     appName: camelCase(appConfig.name),
     appPrefix: appConfig.prefix   || '/',
     appTimeout: appConfig.timeout || '3',
+    pkgName: paramCase(appConfig.name),
     sdkPackage: (appConfig.sdkVersion === '2') ? 'aws-sdk-mock' : 'aws-sdk-client-mock',
     cfResourceName: pascalCase(appConfig.name),
     routePath: `${appConfig.prefix}/example`

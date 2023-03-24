@@ -1,5 +1,5 @@
 {
-  "name": "{{appName}}",
+  "name": "{{pkgName}}",
   "version": "0.0.1",
   "description": "{{appDescription}}",
   "main": "src/app.js",
