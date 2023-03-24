@@ -6,5 +6,22 @@
   //"mounts": ["source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached"],
   "updateContentCommand": "npm install --prefix ${containerWorkspaceFolder}/{{appName}} >/dev/null",
   "postCreateCommand": "apt -y update && apt -y install python3-pip && pip install aws-sam-cli && npm install -g pm2",
-  "postStartCommand": "pm2 start ${containerWorkspaceFolder}/.devcontainer/ecosystem.config.js"
+  "postStartCommand": "pm2 start ${containerWorkspaceFolder}/.devcontainer/ecosystem.config.js",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Arjun.swagger-viewer",
+        "berublan.vscode-log-viewer",
+        "christian-kohler.path-intellisense",
+        "DavidAnson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "donjayamanne.githistory",
+        "liamhammett.inline-parameters",
+        "ms-vscode-remote.remote-containers",
+        "redhat.vscode-yaml",
+        "steoates.autoimport",
+        "searKing.preview-vscode"
+      ]
+    }
+  }
 }
