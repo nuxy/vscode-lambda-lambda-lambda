@@ -7,7 +7,7 @@
 {{appName}}/Makefile
 {{appName}}/package.json
 {{appName}}/src/routes/Example.js
-{{appName}}/src/middleware/Example.js
+{{appName}}/src/middleware/AccessControlHeaders.js
 {{appName}}/src/app.js
 {{appName}}/src/config.json
 {{appName}}/src/openapi.js

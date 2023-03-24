@@ -4,5 +4,6 @@
   },
   "router": {
     "prefix": "{{appPrefix}}"
-  }
+  },
+  "development": true
 }

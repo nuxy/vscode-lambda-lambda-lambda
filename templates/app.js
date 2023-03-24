@@ -3,7 +3,7 @@
 const Router = require('lambda-lambda-lambda');
 const config = require('./config.json');
 
-const middlewareExample = require('./middleware/Example');
+const accessControlHeaders = require('./middleware/AccessControlHeaders');
 
 /**
  * @see AWS::Serverless::Function
@@ -15,7 +15,7 @@ exports.handler = (event, context, callback) => {
   router.setPrefix(config.router.prefix);
 
   // Middleware (order is important).
-  router.use(middlewareExample);
+  router.use(accessControlHeaders);
 
   // .. everything else.
   router.default(function(req, res) {
