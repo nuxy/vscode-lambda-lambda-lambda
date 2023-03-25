@@ -17,6 +17,7 @@ import * as path from 'path';
 export interface AppConfig {
   description: string,
   name: string,
+  asynchronous: string,
   prefix: string,
   timeout: string,
   sdkVersion: string
@@ -55,19 +56,25 @@ export async function createFiles(appConfig: AppConfig, extPath: string) {
   const tplFiles: string[] = fs.readdirSync(templates);
 
   for (let tplFile of tplFiles) {
-    const outFile: string | void = getFsPath(manFiles, tplFile);
+    let outFile: string | void = getFsPath(manFiles, tplFile);
 
     if (outFile) {
-      const outDir = path.dirname(outFile);
+      const outDir: string = path.dirname(outFile);
+
+      const isAsync: boolean = (appConfig.asynchronous === 'Yes');
 
       // Select template based on type.
       if (isMiddleware(outFile)) {
-        tplFile = `${templates}/middleware.js`;
+        tplFile = `${templates}/AccessControlHeaders.js`;
       } else if (isRoute(outFile)) {
-        tplFile = `${templates}/route.js`;
+        tplFile = `${templates}/route` + (isAsync ? '-async' : '') + '.js';
+      } else if (isApp(outFile)) {
+        tplFile = `${templates}/app` + (isAsync ? '-async' : '') + '.js';
       } else {
         tplFile = `${templates}/${tplFile}`;
       }
+
+      outFile = outFile.replace(/-async/, '');
 
       if (!fs.existsSync(outDir)) {
         fs.mkdirSync(outDir, {recursive: true});
@@ -162,4 +169,11 @@ function isMiddleware(path: string): boolean {
  */
 function isRoute(path: string): boolean {
   return !!/\/src\/routes/.test(path);
+}
+
+/**
+ * Check for app output path.
+ */
+function isApp(path: string): boolean {
+  return !!/\/src\/app/.test(path);
 }

@@ -12,10 +12,10 @@
   "paths": {
     "/api/example": {
       "get": {
-        "description": "Example using `Route.index` handler alias.",
+        "description": "Route description.",
         "responses": {
           "200": {
-            "description": "Returns generic response.",
+            "description": "OK",
             "content": {
               "text/html": {
                 "schema": {

@@ -9,6 +9,7 @@
 {{appName}}/swagger.json
 {{appName}}/src/routes/Example.js
 {{appName}}/src/middleware/AccessControlHeaders.js
+{{appName}}/src/app-async.js
 {{appName}}/src/app.js
 {{appName}}/src/config.json
 {{appName}}/src/openapi.js

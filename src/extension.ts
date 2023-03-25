@@ -80,6 +80,13 @@ function createApp(context: ExtensionContext) {
       step: 3
     });
 
+    const asynchronous: string | undefined = await promptQuickPick({
+      placeHolder: 'Use asynchronous handler?',
+      title: inputBoxTitle,
+      items: [{label: 'Yes'}, {label: 'No'}],
+      step: 4
+    });
+
     const timeout: string | undefined = await promptInputBox({
       placeHolder: 'Function timeout (in seconds)',
       title: inputBoxTitle,
@@ -87,19 +94,19 @@ function createApp(context: ExtensionContext) {
         return (value && /^[\d]{1,2}$/.test(value))
           ? undefined : 'Numbers only';
       },
-      step: 4
+      step: 5
     });
 
     const sdkVersion: string | undefined = await promptQuickPick({
       placeHolder: 'AWS SDK for JavaScript version',
       title: inputBoxTitle,
       items: [{label: '2'}, {label: '3'}],
-      step: 5
+      step: 6
     });
 
     // Generate sources from templates.
-    if (description && name && prefix && timeout && sdkVersion) {
-      const appConfig: AppConfig = {description, name, prefix, timeout, sdkVersion};
+    if (description && name && prefix && asynchronous && timeout && sdkVersion) {
+      const appConfig: AppConfig = {description, name, asynchronous, prefix, timeout, sdkVersion};
 
       createFiles(appConfig, context.extensionPath);
     } else {

@@ -21,7 +21,7 @@ module.exports = {
    *             schema:
    *               type: string
    */
-  index (req, res) {
+  async index (req, res) {
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send('OK');
   }
