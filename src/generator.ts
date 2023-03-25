@@ -7,7 +7,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-import {window, workspace}                from 'vscode';
+import {commands, window, workspace}      from 'vscode';
 import {camelCase, paramCase, pascalCase} from 'change-case';
 import {renderFile}                       from 'template-file';
 
@@ -110,6 +110,8 @@ export async function createFile(name: string, extPath: string, outPath: string)
 
   const content: string = await renderFile(tplFile, {...vars});
   fs.writeFileSync(outFile, content, 'utf8');
+
+  commands.executeCommand('workbench.files.action.refreshFilesExplorer');
 }
 
 /**
