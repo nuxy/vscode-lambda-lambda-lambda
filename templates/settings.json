@@ -1,4 +1,14 @@
 {
+  "logViewer.watch": [
+    {
+      "title": "L³ application (debug.log)",
+      "pattern": ".devcontainer/debug.log"
+    },
+    {
+      "title": "L³ application (error.log)",
+      "pattern": ".devcontainer/error.log"
+    }
+  ],
   "markdownlint.config": {
     "MD014": false,
     "MD024": false,
