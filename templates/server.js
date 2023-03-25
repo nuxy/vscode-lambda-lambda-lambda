@@ -66,7 +66,18 @@ http.createServer(function(req, res) {
     };
 
     // Run lambda-lambda-lambda
-    handler(event, null, callback);
+    if (isAsyncFunc(handler) || isPromise(handler)) {
+
+      // Asynchronous handling.
+      handler(event)
+        .then(function(response) {
+          callback(null, response);
+        });
+    } else {
+
+      // Synchronous handling.
+      handler(event, null, callback);
+    }
   });
 }).listen(3000);
 
@@ -114,4 +125,28 @@ function formatHeaders(obj) {
       });
     }
   };
+}
+
+/**
+ * Check if value is an async function.
+ *
+ * @param {AsyncFunction} func
+ *   Async function.
+ *
+ * @return {Boolean}
+ */
+function isAsyncFunc(value) {
+  return (value && (value[Symbol.toStringTag] === 'AsyncFunction'));
+}
+
+/**
+ * Check if object is Promise.
+ *
+ * @param {Object} obj
+ *   Promise object.
+ *
+ * @return {Boolean}
+ */
+function isPromise(obj) {
+  return (obj && (obj[Symbol.toStringTag] === 'Promise' || typeof obj.then === 'function'));
 }
