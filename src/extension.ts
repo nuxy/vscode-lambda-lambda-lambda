@@ -10,28 +10,10 @@
 import {commands, window, ExtensionContext, Uri} from 'vscode';
 
 // Local modules
-import {createFile, createFiles, AppConfig} from './generator';
+import {AppConfig, InputBoxOpts, QuickPickOpts} from './types';
+import {createFile, createFiles}                from './generator';
 
-interface InputBoxOpts {
-  placeHolder: string,
-  title: string,
-  validateInput: {(value: string): string | undefined},
-  value?: string,
-  step?: number
-}
-
-interface QuickPickItem {
-  label: string
-}
-
-interface QuickPickOpts {
-  placeHolder: string,
-  title: string,
-  items: QuickPickItem[],
-  step?: number
-}
-
-/**
+/*
  * Activate the VS Code extension.
  */
 export function activate(context: ExtensionContext) {

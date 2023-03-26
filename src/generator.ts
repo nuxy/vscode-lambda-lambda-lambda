@@ -14,25 +14,8 @@ import {renderFile}                       from 'template-file';
 import * as fs   from 'fs';
 import * as path from 'path';
 
-export interface AppConfig {
-  description: string,
-  name: string,
-  asynchronous: string,
-  prefix: string,
-  timeout: string,
-  sdkVersion: string
-}
-
-interface TemplateVars {
-  appDescription?: AppConfig['description'],
-  appName?: AppConfig['name'],
-  appPrefix?: AppConfig['prefix'],
-  appTimeout?: AppConfig['timeout'],
-  pkgName?: string,
-  sdkPackage?: string,
-  cfResourceName?: string,
-  routePath?: string
-}
+// Local modules
+import {AppConfig, TemplateVars} from './types';
 
 /**
  * Generate app sources from templates.
